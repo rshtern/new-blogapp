@@ -1,0 +1,53 @@
+<!-- Admin - Posts Table -->
+			<section class="col-md-8">
+
+				<h2 class="page-header">Edit posts</h2>
+
+				<table class="table table-bordered table-hover table-striped postsTable">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>
+								<a href="" ng-click="admin.setOrderBy('title')">
+								Title
+								<span class="pull-right"  ng-show="admin.orderByField === 'title'">
+									<i class="glyphicon glyphicon-chevron-down" ng-show="admin.reverseSort"></i>
+									<i  ng-show="!admin.reverseSort" class="glyphicon glyphicon-chevron-up"></i> 
+								</span>
+								</a>
+							</th>
+							<th>
+								<a href="" ng-click="admin.setOrderBy('author')">
+								Author
+								<span class="pull-right"  ng-show="admin.orderByField === 'author'">
+									<i class="glyphicon glyphicon-chevron-down" ng-show="admin.reverseSort"></i>
+									<i  ng-show="!admin.reverseSort" class="glyphicon glyphicon-chevron-up"></i> 
+								</span>
+								</a>
+							</th>
+							<th><a href="" ng-click="admin.setOrderBy('date')">
+								Date
+								<span class="pull-right"  ng-show="admin.orderByField === 'date'">
+									<i class="glyphicon glyphicon-chevron-down" ng-show="admin.reverseSort"></i>
+									<i  ng-show="!admin.reverseSort" class="glyphicon glyphicon-chevron-up"></i> 
+								</span>
+								</a>
+							</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr ng-repeat="post in admin.data | orderBy: admin.orderByField  : admin.reverseSort">
+							<th scope="row">{{$index + 1}}</th>
+							<td><a ng-href="#/admin/edit/post/{{post.title | hrefShortAndPretty}}">{{post.title}}</a></td>
+							<td>{{post.author}}</td>
+							<td>{{post.date | date: 'dd MMM, yyyy'}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<footer>
+					<a class="btn btn-primary" href="#/admin/new/post">Add New Post</a>
+				</footer>
+
+			</section>

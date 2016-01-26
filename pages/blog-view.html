@@ -1,0 +1,47 @@
+<section role="main" class="col-md-8">
+		<div class="post" ng-repeat="post in postCtrl.data.posts | orderBy: 'date' | filter: postCtrl.searchForm | filter: post.searchStr | limitTo : post.postLimit : post.postIndex">
+			<!-- Begin Post -->
+			<article>
+				<header>
+					<h2>
+						<a ng-href="#/post/{{post.title | hrefShortAndPretty}}">{{post.title}}</a>
+
+					</h2>
+
+					<p>
+						<small class="glyphicon glyphicon-user"></small>
+						by <a ng-href="#/posts/?author={{post.author | lowercase | spaceToDash}}">{{post.author}}</a>
+					</p>
+					<p>
+						<small class="glyphicon glyphicon-time"></small>
+						Posted on {{post.date | date: 'dd MMM, yyyy'}}
+					</p>
+				</header>
+
+				<!-- Post Description -->
+				<p>{{post.description}}</p>
+				<br>
+
+				<footer class="clearfix">
+					<p class="pull-left">
+						<b>Tags:&nbsp;</b>
+						
+						<span ng-repeat="tag in post.tags">
+							<a ng-href="#/posts/?category={{tag | lowercase}}" class="label label-default">{{tag}}</a>
+						</span>
+						
+					</p>
+
+					<a class="btn btn-primary pull-right" ng-href='#/post/{{post.title | hrefShortAndPretty}}'>
+						Read More <i class="glyphicon glyphicon-chevron-right"></i>
+					</a>
+				</footer>
+				<hr>
+			</article>
+			<!-- End of Post -->
+	</div>
+	
+	<button class="btn btn-primary" ng-hide="post.postIndex === 0" ng-click="post.decIndex(3)"><i class="glyphicon glyphicon-chevron-left"></i> Older</button>
+	
+	<button class="btn btn-primary" ng-hide="post.postIndex > post.postTotal-post.postLimit" ng-click="post.incIndex(3)">Newer <i class="glyphicon glyphicon-chevron-right"></i></button>
+</section>

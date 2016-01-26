@@ -1,0 +1,31 @@
+<!-- Blog Post Content Column -->
+			<section class="col-md-8">
+
+				<!-- Begin Post -->
+				<article>
+					<header>
+						<h1 class="page-header">{{article.contents.title}}</h1>
+
+						<p>
+							<small class="glyphicon glyphicon-user"></small>
+							by <a href="#">{{article.contents.author}}</a>
+						</p>
+						<p>
+							<small class="glyphicon glyphicon-time"></small>
+							Posted on {{article.contents.date | date: 'dd MMM, yyyy'}}
+						</p>
+						<p>
+							<b>Tags:&nbsp;</b>
+							<span ng-repeat = " tag in article.contents.tags">
+								<a href="#" class="label label-default">{{tag}}</a>
+							</span>
+						</p>
+					</header>
+					<hr>
+
+					<!-- Post Content -->
+					<div ng-include src="article.trustedHtml">
+					<h1>hi</h1>
+					</div>
+					</article>
+<section>
